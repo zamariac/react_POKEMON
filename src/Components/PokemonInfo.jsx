@@ -1,4 +1,4 @@
-const PokemondData = () => {
+const PokemonInfo = () => {
     return (
         <>
             <h1>Charmander</h1>
@@ -21,4 +21,4 @@ const PokemondData = () => {
         </>
     )
 }
-export default PokemondData;
+export default PokemonInfo;

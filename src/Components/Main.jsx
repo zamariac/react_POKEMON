@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import PokemondData from "./PokemonData";
-
+import PokemonInfo from "./PokemonInfo";
+import axios from "axios";
 
 const Main = () => {
+    const[url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/"); 
+
+    const pokemonItems = async() => {
+        
+        const res=await axios.get(url);
+        console.log(res);
+    }
+    useEffect(() => {
+        pokemonItems();
+    },[url])
     return (
         <>
         <div className="container">
@@ -20,7 +30,7 @@ const Main = () => {
                 </div>
             </div>
             <div className="right-content">
-                <PokemondData/>
+                <PokemonInfo/>
             </div>
         </div>
         </>
