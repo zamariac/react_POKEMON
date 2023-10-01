@@ -4,16 +4,37 @@ import PokemonInfo from "./PokemonInfo";
 import axios from "axios";
 
 const Main = () => {
-    const[url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/"); 
+    const [PokemonData, setPokemonData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/"); 
+    const [nextUrl, setNextUrl] = useState();
+    const [previousUrl, setPreviousUrl] = useState();
 
-    const pokemonItems = async() => {
-        
-        const res=await axios.get(url);
-        console.log(res);
+    const pokemonAPI = async() => {
+        setLoading(true);
+        const response=await axios.get(url);
+        setNextUrl(response.data.next);
+        setPreviousUrl(response.data.previous);
+        getPokemon(response.data.results);
+        setLoading(false);
     }
+
+    const getPokemon=async(response) => {
+        response.map(async(item) => {
+            const result=await axios.get(item.url)
+            // stores object in array, new array stores existing items, then add new items
+            setPokemonData(state => {
+                state=[...state,result.data]
+                return state;
+            })
+
+        })
+    }
+
     useEffect(() => {
-        pokemonItems();
+        pokemonAPI();
     },[url])
+    
     return (
         <>
         <div className="container">
