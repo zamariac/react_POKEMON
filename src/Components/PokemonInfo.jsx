@@ -1,6 +1,4 @@
 const PokemonInfo = ({data}) => {
-    console.log('hello:', {data});
-
     return (
         <>  
             {
