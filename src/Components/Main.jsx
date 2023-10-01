@@ -4,7 +4,7 @@ import PokemonInfo from "./PokemonInfo";
 import axios from "axios";
 
 const Main = () => {
-    const [PokemonData, setPokemonData] = useState([]);
+    const [pokemonData, setPokemonData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/"); 
     const [nextUrl, setNextUrl] = useState();
@@ -39,12 +39,7 @@ const Main = () => {
         <>
         <div className="container">
             <div className="left-content">
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
+                <Card pokemon={pokemonData} loading={loading}/>
                 <div className="btn-group">
                     <button>Previous</button>
                     <button>Next</button>
