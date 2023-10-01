@@ -9,7 +9,7 @@ const Main = () => {
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/"); 
     const [nextUrl, setNextUrl] = useState();
     const [previousUrl, setPreviousUrl] = useState();
-    const [pokemonIndex, setPokeIndex] = useState();
+    const [pokemonIndex, setPokemonIndex] = useState();
 
     const pokemonAPI = async() => {
         setLoading(true);
@@ -43,10 +43,21 @@ const Main = () => {
         <>
         <div className="container">
             <div className="left-content">
-                <Card pokemon={pokemonData} loading={loading} infoPokemon={pokemon=>setPokeIndex(pokemon)}/>
+                <Card pokemon={pokemonData} loading={loading} infoPokemon={pokemon=>setPokemonIndex(pokemon)}/>
                 <div className="btn-group">
-                    <button>Previous</button>
-                    <button>Next</button>
+                    {
+                        previousUrl && <button onClick={()=>{
+                            setPokemonData([])
+                        setUrl(previousUrl)
+                    }}>Previous
+                    </button>}
+
+                    { 
+                        nextUrl && <button onClick={()=>{
+                        setPokemonData([])
+                        setUrl(nextUrl)
+                    }}>Next
+                    </button>}
                 </div>
             </div>
             <div className="right-content">
