@@ -27,7 +27,7 @@ const Main = () => {
             // stores object in array, new array stores existing items, then add new items
             setPokemonData(state => {
                 state=[...state,result.data]
-                // state.sort((a,b)=> a.data > b.data ? -1 : 1)
+                state.sort((a,b)=> a.id > b.id ? 1 : -1)
                 return state;
             })
 
