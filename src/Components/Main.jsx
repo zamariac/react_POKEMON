@@ -14,12 +14,11 @@ const Main = () => {
     const pokemonAPI = async() => {
         setLoading(true);
         const response=await axios.get(url);
-        //console.log(res.data.results)
         setNextUrl(response.data.next);
         setPreviousUrl(response.data.previous);
         getPokemon(response.data.results);
         setLoading(false);
-        //console.log(pokemonData)
+        // console.log(response.data.results)
     }
 
     const getPokemon=async(response) => {
@@ -37,7 +36,7 @@ const Main = () => {
 
     useEffect(() => {
         pokemonAPI();
-    },[])
+    },[url])
     
     return (
         <>
